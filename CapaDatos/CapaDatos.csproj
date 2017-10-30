@@ -57,6 +57,11 @@
     <Compile Include="ModeloBase\Producto.cs" />
     <Compile Include="ModeloBase\Role.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositorioAdministradores.cs" />
+    <Compile Include="RepositorioCliente.cs" />
+    <Compile Include="RepositorioFactura.cs" />
+    <Compile Include="RepositorioLineaFactura.cs" />
+    <Compile Include="RepositorioProducto.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entidades\Entidades.csproj">
