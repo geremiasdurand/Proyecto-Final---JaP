@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entidades.Validadores;
-using System.ComponentModel.DataAnnotations;
 
 namespace Entidades
 {
-    public class Administrador : ValidationAttribute
+    public class Administradores : ValidationAttribute
     {
         public int IdAdministrador { get; set; }
 
