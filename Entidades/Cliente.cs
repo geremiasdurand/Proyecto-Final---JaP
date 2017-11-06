@@ -26,6 +26,9 @@ namespace Entidades
         [StringLength(50)]
         public string Domicilio { get; set; }
 
+        [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime FechaDeNacimiento { get; set; }
     }
 }
