@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Proyecto_Final___JaP.Validadores
+namespace Entidades.Validadores
 {
     public class ValidadorEdad : ValidationAttribute
     {

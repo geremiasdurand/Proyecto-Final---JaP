@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CapaDatos
 {
-    class RepositorioLineaFactura
+    public class RepositorioLineaFactura
     {
     }
 }
