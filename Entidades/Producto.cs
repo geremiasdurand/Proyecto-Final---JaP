@@ -21,6 +21,7 @@ namespace Entidades
         public string Marca { get; set; }
 
         [Required]
+        [DataType(DataType.Currency)]
         public int PrecioPorUnidad { get; set; }
     }
 }

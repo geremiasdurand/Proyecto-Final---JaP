@@ -14,6 +14,8 @@ namespace Entidades
 
         public int IdProducto { get; set; }
 
+        [Required]
+        [Range(0, int.MaxValue, ErrorMessage = "Debe ser un numero mayor a 0")]
         public int Cantidad { get; set; }
 
         public int IdFactura { get; set; }

@@ -20,6 +20,8 @@ namespace Entidades
         [StringLength(50)]
         public string Apellido { get; set; }
 
+        [Required]
+        [Range(10000000, 99999999)]
         public int CI { get; set; }
 
         [Required]
@@ -35,6 +37,7 @@ namespace Entidades
 
         [Required]
         [StringLength(50)]
+        [DataType(DataType.Password)]
         public string Contraseña { get; set; }
 
         public int Rol { get; set; }

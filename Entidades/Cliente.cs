@@ -20,6 +20,8 @@ namespace Entidades
         [StringLength(50)]
         public string Apellido { get; set; }
 
+        [Required]
+        [Range(10000000, 999999999999)]
         public int CIoRut { get; set; }
 
         [Required]

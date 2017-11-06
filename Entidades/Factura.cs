@@ -14,6 +14,8 @@ namespace Entidades
 
         public int IdCliente { get; set; }
 
+        [Required]
+        [DataType(DataType.Currency)]
         public int MontoTotal { get; set; }
     }
 }
