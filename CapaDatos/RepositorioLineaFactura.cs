@@ -77,5 +77,21 @@ namespace CapaDatos
                 }
             }
         }
+
+        public void Modificar(Entidades.LineaFactura lineafactura)
+        {
+            using (ConexionDB bd = new ConexionDB())
+            {
+                var buscarEntidad = bd.LineaFacturas.Find(lineafactura.IdLineaFactura);
+
+                if (buscarEntidad != null)
+                {
+                    buscarEntidad.IdProducto = lineafactura.IdProducto;
+                    buscarEntidad.IdFactura = lineafactura.IdFactura;
+                    buscarEntidad.Cantidad = lineafactura.Cantidad;
+                    bd.SaveChanges();
+                }
+            }
+        }
     }
 }
