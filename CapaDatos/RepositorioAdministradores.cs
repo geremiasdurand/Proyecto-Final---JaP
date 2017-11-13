@@ -84,19 +84,16 @@ namespace CapaDatos
             {
                 var buscarEntidad = bd.Administradores.Find(administrador.IdAdministrador);
 
-                /*if (buscarEntidad != null) FALTA TERMINAR JEJE 3==D
+                if (buscarEntidad != null)
                 {
-                    buscarEntidad.Nombre = administrador.Nombre;
                     buscarEntidad.Apellido = administrador.Apellido;
-                    buscarEntidad
-                    buscarEntidad
-                    buscarEntidad
-                    buscarEntidad
-                    buscarEntidad
-                    personaExistente.Apellido = persona.Apellido;
-                    personaExistente.CorreoElectronico = persona.CorreoElectronico;
+                    buscarEntidad.Nombre = administrador.Nombre;
+                    buscarEntidad.Rol = administrador.Rol;
+                    buscarEntidad.FechaDeNacimiento = administrador.FechaDeNacimiento;
+                    buscarEntidad.Contraseña = administrador.Contraseña;
+                    buscarEntidad.Domicilio = administrador.Domicilio;
                     bd.SaveChanges();
-                }*/
+                }
             }
         }
 
