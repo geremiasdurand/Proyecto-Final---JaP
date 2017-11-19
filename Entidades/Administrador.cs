@@ -8,7 +8,7 @@ using Entidades.Validadores;
 
 namespace Entidades
 {
-    public class Administradores
+    public class Administradores : ValidationAttribute
     {
         public int IdAdministrador { get; set; }
 
@@ -41,6 +41,6 @@ namespace Entidades
         [DataType(DataType.Password)]
         public string Contraseña { get; set; }
 
-        public int Rol { get; set; }
+        public Enumerados Rol { get; set; }
     }
 }

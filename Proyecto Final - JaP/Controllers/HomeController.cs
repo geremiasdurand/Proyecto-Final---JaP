@@ -29,7 +29,7 @@ namespace Proyecto_Final___JaP.Controllers
             LogicaAdministrador logica = new LogicaAdministrador();
             administrador = logica.BuscarPorUserPass(administrador);
             Session["Sesion"] = administrador;
-            return RedirectToAction("Index");
+            return RedirectToAction("About");
         }
 
         [HttpPost]
@@ -37,7 +37,7 @@ namespace Proyecto_Final___JaP.Controllers
         {
             Administradores usuario = new Administradores();
             Session["Sesion"] = usuario;
-            return RedirectToAction("Sesion");
+            return RedirectToAction("Index");
         }
 
         public ActionResult About()
