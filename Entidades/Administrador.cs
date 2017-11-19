@@ -8,7 +8,7 @@ using Entidades.Validadores;
 
 namespace Entidades
 {
-    public class Administradores : ValidationAttribute
+    public class Administradores
     {
         public int IdAdministrador { get; set; }
 
@@ -28,7 +28,8 @@ namespace Entidades
         [StringLength(50)]
         public string Domicilio { get; set; }
 
-        [ValidadorEdad(18)]
+        [Required]
+        [DataType(DataType.Date)]
         public DateTime FechaDeNacimiento { get; set; }
 
         [Required]

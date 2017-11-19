@@ -87,5 +87,10 @@
                 .WithRequired(e => e.Role)
                 .WillCascadeOnDelete(false);
         }
+
+        private void Fix()
+        {
+            var instance = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
+        }
     }
 }
