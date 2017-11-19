@@ -24,7 +24,7 @@ namespace CapaDatos
                                 CI = tabla.CI,
                                 Domicilio = tabla.Domicilio,
                                 FechaDeNacimiento = tabla.FechaDeNacimiento,
-                                Rol = tabla.Rol
+                                Rol = (Entidades.Enumerados)tabla.Rol
                             };
 
                 return lista.ToList();
@@ -41,7 +41,7 @@ namespace CapaDatos
                     IdAdministrador = administrador.IdAdministrador,
                     Domicilio = administrador.Domicilio,
                     FechaDeNacimiento = administrador.FechaDeNacimiento,
-                    Rol = administrador.Rol,
+                    Rol = (int)administrador.Rol,
                     Contraseña = administrador.Contraseña,
                     Usuario = administrador.Usuario,
                     CI = administrador.CI
@@ -78,6 +78,32 @@ namespace CapaDatos
             return resultado;
         }
 
+        public Entidades.Administradores BuscarPorUserPass(Entidades.Administradores administrador)
+        {
+            Entidades.Administradores resultado = null;
+
+            using (ConexionDB bd = new ConexionDB())
+            {
+                var lista = from Administradore in bd.Administradores
+                                where Administradore.Usuario == administrador.Usuario && Administradore.Contraseña == administrador.Contraseña
+                                select Administradore;
+
+                var entidad = lista.FirstOrDefault();
+
+                if (entidad != null)
+                {
+                    resultado = new Entidades.Administradores()
+                    {
+                        IdAdministrador = entidad.IdAdministrador,
+                        Usuario = entidad.Nombre,
+                        Rol = (Entidades.Enumerados)entidad.Rol
+                    };
+                }
+            }
+
+            return resultado;
+        }
+
         public void Modificar(Entidades.Administradores administrador)
         {
             using (ConexionDB bd = new ConexionDB())
@@ -88,7 +114,7 @@ namespace CapaDatos
                 {
                     buscarEntidad.Apellido = administrador.Apellido;
                     buscarEntidad.Nombre = administrador.Nombre;
-                    buscarEntidad.Rol = administrador.Rol;
+                    buscarEntidad.Rol = (int)administrador.Rol;
                     buscarEntidad.FechaDeNacimiento = administrador.FechaDeNacimiento;
                     buscarEntidad.Contraseña = administrador.Contraseña;
                     buscarEntidad.Domicilio = administrador.Domicilio;

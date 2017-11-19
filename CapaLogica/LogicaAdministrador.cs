@@ -33,6 +33,11 @@ namespace CapaLogica
             return repositorio.Buscar(entidad);
         }
 
+        public Entidades.Administradores BuscarPorUserPass(Entidades.Administradores entidad)
+        {
+            return repositorio.BuscarPorUserPass(entidad);
+        }
+
         public List<Entidades.Administradores> ListarTodos()
         {
             return repositorio.ListarTodos();
