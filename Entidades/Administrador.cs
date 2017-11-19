@@ -12,6 +12,10 @@ namespace Entidades
     {
         public int IdAdministrador { get; set; }
 
+        public Administradores() {
+            Rol = Enumerados.Indefinido;
+        }
+
         [Required]
         [StringLength(50)]
         public string Nombre { get; set; }
@@ -28,7 +32,6 @@ namespace Entidades
         [StringLength(50)]
         public string Domicilio { get; set; }
 
-        [ValidadorEdad(18)]
         public DateTime FechaDeNacimiento { get; set; }
 
         [Required]
@@ -40,6 +43,6 @@ namespace Entidades
         [DataType(DataType.Password)]
         public string Contraseña { get; set; }
 
-        public int Rol { get; set; }
+        public Enumerados Rol { get; set; }
     }
 }

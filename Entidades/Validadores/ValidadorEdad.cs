@@ -19,8 +19,8 @@ namespace Entidades.Validadores
         {
             if (value != null)
             {
-                DateTime fecha = (DateTime)value;
-                var diferencia = DateTime.Now - fecha;
+                DateTime fechaIngresada = (DateTime)value;
+                var diferencia = DateTime.Now - fechaIngresada;
 
                 if ((diferencia.Days / 365) >= this.edad)
                 {
@@ -31,7 +31,6 @@ namespace Entidades.Validadores
                     return new ValidationResult("El alumno debe tener al menos " + this.edad + " años.");
                 }
             }
-
             return ValidationResult.Success;
         }
     }

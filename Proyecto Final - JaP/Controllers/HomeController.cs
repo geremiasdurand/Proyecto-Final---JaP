@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CapaLogica;
+using Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +12,32 @@ namespace Proyecto_Final___JaP.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+             Administradores administrador = (Administradores)Session["Usuario"];
+
+            if (administrador == null)
+            {
+                administrador = new Administradores();
+                Session["Sesion"] = null;
+            }
+
+            return View(administrador);
+        }
+
+        [HttpPost]
+        public ActionResult LogIn(Administradores administrador)
+        {
+            LogicaAdministrador logica = new LogicaAdministrador();
+            administrador = logica.BuscarPorUserPass(administrador);
+            Session["Sesion"] = administrador;
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult LogOut()
+        {
+            Administradores usuario = new Administradores();
+            Session["Sesion"] = usuario;
+            return RedirectToAction("Sesion");
         }
 
         public ActionResult About()
