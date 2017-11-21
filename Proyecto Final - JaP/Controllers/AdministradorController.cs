@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Entidades.Validadores;
+using Entidades;
 
 namespace Proyecto_Final___JaP.Controllers
 {

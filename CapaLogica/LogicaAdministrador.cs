@@ -1,4 +1,6 @@
 ﻿using System;
+using CapaDatos;
+using Entidades;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,5 +44,14 @@ namespace CapaLogica
         {
             return repositorio.ListarTodos();
         }
+
+        //AGREGADO POR GERE
+
+        public Administradores EncontrarAdministrador(string Usuario, string Contraseña)
+        {
+            return repositorio.EncontrarAdministrador(Usuario, Contraseña);
+        }
+
+        //AGREGADO POR GERE FIN-
     }
 }

@@ -13,10 +13,31 @@ namespace Proyecto_Final___JaP.Controllers
         // GET: Cliente
         public ActionResult Index()
         {
-            LogicaCliente logicaCliente = new LogicaCliente();
-            List<Cliente> cliente = logicaCliente.ListarTodos();
+            if (ValidarRol(Enumerados.Administrador))
+            {
+                LogicaCliente logicaCliente = new LogicaCliente();
+                List<Cliente> cliente = logicaCliente.ListarTodos();
 
-            return View(cliente);
+                return View(cliente);
+            }
+
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        private bool ValidarRol(Enumerados Rol)
+        {
+            bool resultado = false;
+
+            Administradores administrador = (Administradores)Session["Administrador"];
+
+            if (administrador != null)
+            {
+                resultado = administrador.Rol == Rol;
+            }
+            return resultado;
         }
     }
 }
