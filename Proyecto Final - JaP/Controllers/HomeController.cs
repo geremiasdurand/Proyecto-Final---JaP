@@ -28,7 +28,7 @@ namespace Proyecto_Final___JaP.Controllers
         {
             LogicaAdministrador logica = new LogicaAdministrador();
             //administrador = logica.BuscarPorUserPass(administrador);
-            administrador = logica.EncontrarAdministrador(administrador.Usuario, administrador.Contraseña);
+            administrador = logica.BuscarPorUserPass(administrador);
             Session["Administrador"] = administrador;
             return RedirectToAction("Index");
         }
