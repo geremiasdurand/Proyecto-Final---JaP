@@ -8,7 +8,7 @@ using Entidades.Validadores;
 
 namespace Entidades
 {
-    public class Administradores : ValidationAttribute
+    public class Administradores
     {
         public int IdAdministrador { get; set; }
 
