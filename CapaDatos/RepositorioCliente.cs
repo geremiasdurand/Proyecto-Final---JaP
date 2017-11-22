@@ -46,25 +46,34 @@ namespace CapaDatos
             }
         }
 
-        public Entidades.Cliente Buscar(Entidades.Cliente cliente)
+        public Entidades.Cliente Buscar(int idCliente)
         {
             Entidades.Cliente resultado = null;
 
             using (ConexionDB bd = new ConexionDB())
             {
-                var entidadABuscar = bd.Clientes.Find(cliente.idCliente);
+                var entidadABuscar = bd.Clientes.Find(idCliente);
 
                 if (entidadABuscar != null)
                 {
-                    resultado = new Entidades.Cliente
+                    resultado = new Entidades.Cliente();
+                    resultado.Nombre = entidadABuscar.Nombre;
+                    resultado.Apellido = entidadABuscar.Apellido;
+                    resultado.idCliente = entidadABuscar.idCliente;
+                    resultado.CIoRut = entidadABuscar.CIoRut;
+                    resultado.Domicilio = entidadABuscar.Domicilio;
+                    resultado.FechaDeNacimiento = entidadABuscar.FechaDeNacimiento;
+
+                    //DESABILITADO BY GERE
                     {
-                        Nombre = cliente.Nombre,
-                        Apellido = cliente.Apellido,
-                        idCliente = cliente.idCliente,
-                        CIoRut = cliente.CIoRut,
-                        Domicilio = cliente.Domicilio,
-                        FechaDeNacimiento = cliente.FechaDeNacimiento,
+                        //Nombre = cliente.Nombre,
+                        //Apellido = cliente.Apellido,
+                        //idCliente = cliente.idCliente,
+                        //CIoRut = cliente.CIoRut,
+                        //Domicilio = cliente.Domicilio,
+                        //FechaDeNacimiento = cliente.FechaDeNacimiento,
                     };
+                    //DESABILITADO BY GERE END
                 }
             }
 

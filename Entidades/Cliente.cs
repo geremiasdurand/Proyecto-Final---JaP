@@ -30,7 +30,6 @@ namespace Entidades
 
         [Required]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime FechaDeNacimiento { get; set; }
     }
 }
