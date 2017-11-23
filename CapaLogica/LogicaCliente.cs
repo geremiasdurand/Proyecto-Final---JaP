@@ -20,9 +20,9 @@ namespace CapaLogica
             repositorio.Agregar(entidad);
         }
 
-        public void Eliminar(Entidades.Cliente entidad)
+        public void Eliminar(int clienteId)
         {
-            repositorio.Eliminar(entidad);
+            repositorio.Eliminar(clienteId);
         }
 
         public void Modificar(Entidades.Cliente entidad)
@@ -30,9 +30,9 @@ namespace CapaLogica
             repositorio.Modificar(entidad);
         }
 
-        public Entidades.Cliente Buscar(Entidades.Cliente entidad)
+        public Entidades.Cliente Buscar(int clienteId)
         {
-            return repositorio.Buscar(entidad);
+            return repositorio.Buscar(clienteId);
         }
 
         public List<Entidades.Cliente> ListarTodos()

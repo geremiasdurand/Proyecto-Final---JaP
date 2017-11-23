@@ -45,25 +45,25 @@ namespace CapaDatos
                 bd.SaveChanges();
             }
         }
-
-        public Entidades.Cliente Buscar(Entidades.Cliente cliente)
+       
+        public Entidades.Cliente Buscar(int clienteId)
         {
             Entidades.Cliente resultado = null;
 
             using (ConexionDB bd = new ConexionDB())
             {
-                var entidadABuscar = bd.Clientes.Find(cliente.idCliente);
+                var entidadABuscar = bd.Clientes.Find(clienteId);
 
                 if (entidadABuscar != null)
                 {
                     resultado = new Entidades.Cliente()
                     {
-                        Nombre = cliente.Nombre,
-                        Apellido = cliente.Apellido,
-                        idCliente = cliente.idCliente,
-                        CIoRut = cliente.CIoRut,
-                        Domicilio = cliente.Domicilio,
-                        FechaDeNacimiento = cliente.FechaDeNacimiento,
+                        Nombre = entidadABuscar.Nombre,
+                        Apellido = entidadABuscar.Apellido,
+                        idCliente = entidadABuscar.idCliente,
+                        CIoRut = entidadABuscar.CIoRut,
+                        Domicilio = entidadABuscar.Domicilio,
+                        FechaDeNacimiento = entidadABuscar.FechaDeNacimiento,
                     };
                 }
             }
@@ -89,11 +89,11 @@ namespace CapaDatos
             }
         }
 
-        public void Eliminar(Entidades.Cliente cliente)
+        public void Eliminar(int clienteId)
         {
             using (ConexionDB bd = new ConexionDB())
             {
-                var buscarEntidad = bd.Clientes.Find(cliente.idCliente);
+                var buscarEntidad = bd.Clientes.Find(clienteId);
 
                 if (buscarEntidad != null)
                 {

@@ -57,9 +57,18 @@ namespace Proyecto_Final___JaP.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete()
+        public ActionResult Edit(int clienteId)
         {
-            return View();
+            if (ValidarRol(Enumerados.Administrador) || ValidarRol(Enumerados.Empleado))
+            {
+                LogicaCliente logicaCliente = new LogicaCliente();
+                Cliente resultado = logicaCliente.Buscar(clienteId);
+                return View(resultado);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
@@ -68,10 +77,8 @@ namespace Proyecto_Final___JaP.Controllers
             if (ValidarRol(Enumerados.Administrador) || ValidarRol(Enumerados.Empleado))
             {
                 LogicaCliente logicaCliente = new LogicaCliente();
-                if(logicaCliente.Buscar(cliente) != null)
-                {
-                    logicaCliente.Modificar(cliente);
-                }
+                logicaCliente.Modificar(cliente);
+
                 return RedirectToAction("Index", "Cliente");
             }
             else
@@ -81,9 +88,35 @@ namespace Proyecto_Final___JaP.Controllers
         }
 
         [HttpGet]
-        public ActionResult Details()
+        public ActionResult Delete(int clienteId)
         {
-            return View();
+            if (ValidarRol(Enumerados.Administrador) || ValidarRol(Enumerados.Empleado))
+            {
+                LogicaCliente logicaCliente = new LogicaCliente();
+                Cliente resultado = logicaCliente.Buscar(clienteId);
+                return View(resultado);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        public ActionResult DeleteConfirm(int clienteId)
+        {
+            if (ValidarRol(Enumerados.Administrador) || ValidarRol(Enumerados.Empleado))
+            {
+                LogicaCliente logicaCliente = new LogicaCliente();
+                logicaCliente.Eliminar(clienteId);
+
+                return RedirectToAction("Index", "Cliente");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         private bool ValidarRol(Enumerados Rol)
