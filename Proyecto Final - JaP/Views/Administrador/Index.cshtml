@@ -1,10 +1,10 @@
-﻿@model IEnumerable<Entidades.Cliente>
+﻿@model IEnumerable<Entidades.Administradores>
 
 @{
     ViewBag.Title = "Listado";
 }
 
-<h2>Listado de clientes</h2>
+<h2>Listado deadministradores</h2>
 
 <p>
     @Html.ActionLink("Crear nuevo", "Create")
@@ -21,13 +21,22 @@
             @Html.DisplayNameFor(model => model.Apellido)
         </th>
         <th>
-            @Html.DisplayName("CI o Rut")
+            @Html.DisplayNameFor(model => model.CI)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Domicilio)
         </th>
         <th>
-            @Html.DisplayName("Fecha de Nacimiento")
+            @Html.DisplayName("Fecha de nacimiento")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contraseña)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rol)
         </th>
         <th></th>
     </tr>
@@ -35,7 +44,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.idCliente)
+            @Html.DisplayFor(modelItem => item.IdAdministrador)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Nombre)
@@ -44,7 +53,7 @@
             @Html.DisplayFor(modelItem => item.Apellido)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CIoRut)
+            @Html.DisplayFor(modelItem => item.CI)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Domicilio)
@@ -53,8 +62,17 @@
             @Html.DisplayFor(modelItem => item.FechaDeNacimiento)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { clienteId = item.idCliente }) |
-            @Html.ActionLink("Borrar", "Delete", new { clienteId = item.idCliente })
+            @Html.DisplayFor(modelItem => item.Usuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contraseña)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rol)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new {adminId = item.IdAdministrador }) |
+            @Html.ActionLink("Borrar", "Delete", new { adminId = item.IdAdministrador })
         </td>
     </tr>
 }

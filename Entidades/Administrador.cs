@@ -41,6 +41,8 @@ namespace Entidades
         [DataType(DataType.Password)]
         public string Contraseña { get; set; }
 
+        [Required]
+        [Range(1, 2)]
         public Enumerados Rol { get; set; }
     }
 }

@@ -1,14 +1,14 @@
-﻿@model Entidades.Cliente
+﻿@model Entidades.Administradores
 
 @{
     ViewBag.Title = "Borrar";
 }
 
-<h2>Borrar</h2>
+<h2>Borrar administrador</h2>
 
-<h4>Cliente</h4>
+<h3>¿Quiéres borrar a este administrador?</h3>
 <div>
-    <h3>¿Quiéres borrar a este cliente?</h3>
+    <h4>Administrador</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -16,9 +16,9 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.idCliente)
+            @Html.DisplayFor(model => model.IdAdministrador)
         </dd>
-        
+
         <dt>
             @Html.DisplayNameFor(model => model.Nombre)
         </dt>
@@ -36,11 +36,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayName("CI o RUT")
+            @Html.DisplayNameFor(model => model.CI)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CIoRut)
+            @Html.DisplayFor(model => model.CI)
         </dd>
 
         <dt>
@@ -59,6 +59,30 @@
             @Html.DisplayFor(model => model.FechaDeNacimiento)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contraseña)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contraseña)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rol)
+        </dd>
+
     </dl>
 
     @using (Html.BeginForm()) {
@@ -66,7 +90,7 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Borrar" class="btn btn-default" /> |
-            @Html.ActionLink("Volver al listado", "Index", "Cliente")
+            @Html.ActionLink("Volver a la lista", "Index")
         </div>
     }
 </div>

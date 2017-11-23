@@ -14,9 +14,9 @@ namespace CapaLogica
             repositorio.Agregar(entidad);
         }
 
-        public void Eliminar(Entidades.Administradores entidad)
+        public void Eliminar(int adminId)
         {
-            repositorio.Eliminar(entidad);
+            repositorio.Eliminar(adminId);
         }
 
         public void Modificar(Entidades.Administradores entidad)
@@ -24,9 +24,9 @@ namespace CapaLogica
             repositorio.Modificar(entidad);
         }
 
-        public Entidades.Administradores Buscar(Entidades.Administradores entidad)
+        public Entidades.Administradores Buscar(int adminId)
         {
-            return repositorio.Buscar(entidad);
+            return repositorio.Buscar(adminId);
         }
 
         public Entidades.Administradores BuscarPorUserPass(Entidades.Administradores entidad)

@@ -66,7 +66,8 @@ namespace CapaDatos
         {
             using (ConexionDB bd = new ConexionDB())
             {
-                var nuevaEntidad = new Administradore{
+                var nuevaEntidad = new Administradore
+                {
                     Nombre = administrador.Nombre,
                     Apellido = administrador.Apellido,
                     IdAdministrador = administrador.IdAdministrador,
@@ -82,26 +83,27 @@ namespace CapaDatos
             }
         }
 
-        public Entidades.Administradores Buscar(Entidades.Administradores administrador)
+        public Entidades.Administradores Buscar(int adminId)
         {
             Entidades.Administradores resultado = null;
 
             using (ConexionDB bd = new ConexionDB())
             {
-                var entidadABuscar = bd.Administradores.Find(administrador.IdAdministrador);
+                var entidadABuscar = bd.Administradores.Find(adminId);
 
                 if (entidadABuscar != null)
                 {
-                    resultado = new Entidades.Administradores{
-                        Nombre = administrador.Nombre,
-                        Apellido = administrador.Apellido,
-                        IdAdministrador = administrador.IdAdministrador,
-                        Domicilio = administrador.Domicilio,
-                        FechaDeNacimiento = administrador.FechaDeNacimiento,
-                        Rol = administrador.Rol,
-                        Contraseña = administrador.Contraseña,
-                        Usuario = administrador.Usuario,
-                        CI = administrador.CI
+                    resultado = new Entidades.Administradores
+                    {
+                        Nombre = entidadABuscar.Nombre,
+                        Apellido = entidadABuscar.Apellido,
+                        IdAdministrador = entidadABuscar.IdAdministrador,
+                        Domicilio = entidadABuscar.Domicilio,
+                        FechaDeNacimiento = entidadABuscar.FechaDeNacimiento,
+                        //Rol = entidadABuscar.Rol,
+                        Contraseña = entidadABuscar.Contraseña,
+                        Usuario = entidadABuscar.Usuario,
+                        CI = entidadABuscar.CI
                     };
                 }
             }
@@ -154,11 +156,11 @@ namespace CapaDatos
             }
         }
 
-        public void Eliminar(Entidades.Administradores administrador)
+        public void Eliminar(int adminId)
         {
             using (ConexionDB bd = new ConexionDB())
             {
-                var buscarEntidad = bd.Administradores.Find(administrador.IdAdministrador);
+                var buscarEntidad = bd.Administradores.Find(adminId);
 
                 if (buscarEntidad != null)
                 {
