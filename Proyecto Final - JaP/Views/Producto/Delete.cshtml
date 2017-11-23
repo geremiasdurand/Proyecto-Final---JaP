@@ -1,40 +1,16 @@
 ﻿@model Entidades.Producto
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Borrar";
 }
 
-<h2>Delete</h2>
+<h2>Borrar producto</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>¿Quiéres borrar a este producto?</h3>
 <div>
     <h4>Producto</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.RequiresValidationContext)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RequiresValidationContext)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ErrorMessage)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ErrorMessage)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ErrorMessageResourceName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ErrorMessageResourceName)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Nombre)
         </dt>
@@ -52,7 +28,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PrecioPorUnidad)
+            @Html.DisplayName("Precio por unidad")
         </dt>
 
         <dd>
@@ -65,8 +41,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Borrar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver al listado", "Index")
         </div>
     }
 </div>

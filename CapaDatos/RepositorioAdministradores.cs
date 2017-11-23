@@ -6,8 +6,8 @@ namespace CapaDatos
 {
     public class RepositorioAdministradores
     {
-        //INICIO DE LA PRUEBA BY GERE
-
+        
+        //BORRAR
             public Entidades.Administradores EncontrarAdministrador(string Usuario, string Contraseña)
         {
             Entidades.Administradores resultado = null;
@@ -39,7 +39,7 @@ namespace CapaDatos
 
             return resultado;
         }
-        //FIN DE LA PRUEBA BY GERE
+        //BORRAR
         public List<Entidades.Administradores> ListarTodos()
         {
             using (ConexionDB bd = new ConexionDB())

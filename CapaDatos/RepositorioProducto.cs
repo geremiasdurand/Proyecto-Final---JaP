@@ -41,22 +41,22 @@ namespace CapaDatos
             }
         }
 
-        public Entidades.Producto Buscar(Entidades.Producto Producto)
+        public Entidades.Producto Buscar(int productoId)
         {
             Entidades.Producto resultado = null;
 
             using (ConexionDB bd = new ConexionDB())
             {
-                var entidadABuscar = bd.Productoes.Find(Producto.Id);
+                var entidadABuscar = bd.Productoes.Find(productoId);
 
                 if (entidadABuscar != null)
                 {
                     resultado = new Entidades.Producto
                     {
-                        Id = Producto.Id,
-                        Nombre = Producto.Nombre,
-                        Marca = Producto.Marca,
-                        PrecioPorUnidad = Producto.PrecioPorUnidad,
+                        Id = entidadABuscar.Id,
+                        Nombre = entidadABuscar.Nombre,
+                        Marca = entidadABuscar.Marca,
+                        PrecioPorUnidad = entidadABuscar.PrecioPorUnidad,
                     };
                 }
             }
@@ -80,11 +80,11 @@ namespace CapaDatos
             }
         }
 
-        public void Eliminar(Entidades.Producto Producto)
+        public void Eliminar(int productoId)
         {
             using (ConexionDB bd = new ConexionDB())
             {
-                var buscarEntidad = bd.Productoes.Find(Producto.Id);
+                var buscarEntidad = bd.Productoes.Find(productoId);
 
                 if (buscarEntidad != null)
                 {

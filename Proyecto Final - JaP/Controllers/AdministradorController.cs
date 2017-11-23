@@ -11,7 +11,7 @@ namespace Proyecto_Final___JaP.Controllers
 {
     public class AdministradorController : Controller
     {
-        // GET: Cliente
+        // GET: Administrador
         public ActionResult Index()
         {
             if (ValidarRol(Enumerados.Administrador) || ValidarRol(Enumerados.Empleado))
