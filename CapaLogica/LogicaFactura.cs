@@ -20,9 +20,9 @@ namespace CapaLogica
             repositorio.Agregar(entidad);
         }
 
-        public void Eliminar(Entidades.Factura entidad)
+        public void Eliminar(int facturaId)
         {
-            repositorio.Eliminar(entidad);
+            repositorio.Eliminar(facturaId);
         }
 
         public void Modificar(Entidades.Factura entidad)
@@ -30,9 +30,9 @@ namespace CapaLogica
             repositorio.Modificar(entidad);
         }
 
-        public Entidades.Factura Buscar(Entidades.Factura entidad)
+        public Entidades.Factura Buscar(int facturaId)
         {
-            return repositorio.Buscar(entidad);
+            return repositorio.Buscar(facturaId);
         }
 
         public List<Entidades.Factura> ListarTodos()

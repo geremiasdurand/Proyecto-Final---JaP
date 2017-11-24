@@ -6,40 +6,6 @@ namespace CapaDatos
 {
     public class RepositorioAdministradores
     {
-        
-        //BORRAR
-            public Entidades.Administradores EncontrarAdministrador(string Usuario, string Contraseña)
-        {
-            Entidades.Administradores resultado = null;
-
-            using (ConexionDB bd = new ConexionDB())
-            {
-                var registros = from admin in bd.Administradores
-                                where admin.Usuario == Usuario && admin.Contraseña == Contraseña
-                                select admin;
-
-                var registro = registros.FirstOrDefault();
-
-                if (registro != null)
-                {
-                    resultado = new Entidades.Administradores()
-                    {
-                        IdAdministrador = registro.IdAdministrador,
-                        Nombre = registro.Nombre,
-                        Apellido = registro.Apellido,
-                        Contraseña = registro.Contraseña,
-                        Usuario = registro.Usuario,
-                        CI = registro.CI,
-                        Domicilio = registro.Domicilio,
-                        FechaDeNacimiento = registro.FechaDeNacimiento,
-                        Rol = (Entidades.Enumerados)registro.Rol
-                    };
-                }
-            }
-
-            return resultado;
-        }
-        //BORRAR
         public List<Entidades.Administradores> ListarTodos()
         {
             using (ConexionDB bd = new ConexionDB())

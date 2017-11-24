@@ -39,21 +39,21 @@ namespace CapaDatos
             }
         }
 
-        public Entidades.Factura Buscar(Entidades.Factura factura)
+        public Entidades.Factura Buscar(int facturaId)
         {
             Entidades.Factura resultado = null;
 
             using (ConexionDB bd = new ConexionDB())
             {
-                var entidadABuscar = bd.Facturas.Find(factura.Id);
+                var entidadABuscar = bd.Facturas.Find(facturaId);
 
                 if (entidadABuscar != null)
                 {
                     resultado = new Entidades.Factura
                     {
-                        Id = factura.Id,
-                        IdCliente = factura.IdCliente,
-                        MontoTotal = factura.MontoTotal,
+                        Id = entidadABuscar.Id,
+                        IdCliente = entidadABuscar.IdCliente,
+                        MontoTotal = entidadABuscar.MontoTotal,
                     };
                 }
             }
@@ -61,16 +61,16 @@ namespace CapaDatos
             return resultado;
         }
 
-        public void Modificar(Entidades.Factura factura)
+        public void Modificar(int facturaId)
         {
             using (ConexionDB bd = new ConexionDB())
             {
-                var buscarEntidad = bd.Facturas.Find(factura.Id);
+                var buscarEntidad = bd.Facturas.Find(facturaId);
 
                 if (buscarEntidad != null)
                 {
-                    buscarEntidad.IdCliente = factura.IdCliente;
-                    buscarEntidad.MontoTotal = factura.MontoTotal;
+                    buscarEntidad.IdCliente = buscarEntidad.IdCliente;
+                    buscarEntidad.MontoTotal = buscarEntidad.MontoTotal;
                     bd.SaveChanges();
                 }
             }
