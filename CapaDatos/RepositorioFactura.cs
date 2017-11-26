@@ -61,11 +61,11 @@ namespace CapaDatos
             return resultado;
         }
 
-        public void Modificar(int facturaId)
+        public void Modificar(Entidades.Factura factura)
         {
             using (ConexionDB bd = new ConexionDB())
             {
-                var buscarEntidad = bd.Facturas.Find(facturaId);
+                var buscarEntidad = bd.Facturas.Find(factura.Id);
 
                 if (buscarEntidad != null)
                 {
@@ -76,11 +76,11 @@ namespace CapaDatos
             }
         }
 
-        public void Eliminar(Entidades.Factura factura)
+        public void Eliminar(int facturaId)
         {
             using (ConexionDB bd = new ConexionDB())
             {
-                var buscarEntidad = bd.Facturas.Find(factura.Id);
+                var buscarEntidad = bd.Facturas.Find(facturaId);
 
                 if (buscarEntidad != null)
                 {

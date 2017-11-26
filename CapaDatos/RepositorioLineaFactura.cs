@@ -35,6 +35,7 @@ namespace CapaDatos
                     IdFactura = lineafactura.IdFactura,
                     IdProducto = lineafactura.IdProducto,
                     Cantidad = lineafactura.Cantidad,
+
                 };
                 bd.LineaFacturas.Add(nuevaEntidad);
                 bd.SaveChanges();

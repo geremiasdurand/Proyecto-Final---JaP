@@ -41,12 +41,12 @@ namespace Proyecto_Final___JaP.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Factura factura)
+        public ActionResult Create(LineaFactura lineaFactura)
         {
             if (ValidarRol(Enumerados.Administrador) || ValidarRol(Enumerados.Empleado))
             {
-                LogicaFactura logicaFactura = new LogicaFactura();
-                logicaFactura.Agregar(factura);
+                LogicaLineaFactura logicaLineaFactura = new LogicaLineaFactura();
+                logicaLineaFactura.Agregar(lineaFactura);
 
                 return RedirectToAction("Index", "Factura");
             }
