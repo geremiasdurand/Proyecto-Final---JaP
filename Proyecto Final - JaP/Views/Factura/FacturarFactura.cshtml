@@ -4,13 +4,11 @@
     ViewBag.Title = "Facturar";
 }
 
-<h2>Facturar</h2>
 @using (Html.BeginForm("Facturar","Factura")) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Factura</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         
@@ -40,6 +38,6 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Volver al inicio", "Index")
 </div>
 

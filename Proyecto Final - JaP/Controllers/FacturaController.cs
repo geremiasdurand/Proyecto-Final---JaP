@@ -95,6 +95,7 @@ namespace Proyecto_Final___JaP.Controllers
         {
             if (ValidarRol(Enumerados.Administrador) || ValidarRol(Enumerados.Empleado))
             {
+                
                 List<LineaFactura> Lista = (List<LineaFactura>)Session["ListaDeTabla"];
                 lineaFactura.Producto = TraerProducto(lineaFactura.Producto.Id);
                 Lista.Add(lineaFactura);
@@ -140,27 +141,30 @@ namespace Proyecto_Final___JaP.Controllers
         [HttpPost]
         public ActionResult Facturar(Factura factura)
         {
-            if (ValidarRol(Enumerados.Administrador) || ValidarRol(Enumerados.Empleado)) { 
-                
-                LogicaFactura logicaFactura = new LogicaFactura();
-                Factura nuevaFactura = new Factura()
-                {
-                    MontoTotal = (int)Session["LMontoTotal"],
-                    IdCliente = factura.IdCliente
-                };
-
-                int idFactura = logicaFactura.Agregar(nuevaFactura);
-                nuevaFactura.Id = idFactura;
-
+            if (ValidarRol(Enumerados.Administrador) || ValidarRol(Enumerados.Empleado)) {
                 List<LineaFactura> Lista = (List<LineaFactura>)Session["ListaDeTabla"];
-                LogicaLineaFactura logicaLineaFactura = new LogicaLineaFactura();
-                foreach (var l in Lista) {
-                    l.IdFactura = idFactura;
-                    logicaLineaFactura.Agregar(l);
-                }
+                if (Lista.Count > 0)
+                {
+                    LogicaFactura logicaFactura = new LogicaFactura();
+                    Factura nuevaFactura = new Factura()
+                    {
+                        MontoTotal = (int)Session["LMontoTotal"],
+                        IdCliente = factura.IdCliente
+                    };
 
-                Session["ListaDeTabla"] = new List<LineaFactura>();
-                Session["LMontoTotal"] = 0;
+                    int idFactura = logicaFactura.Agregar(nuevaFactura);
+                    nuevaFactura.Id = idFactura;
+
+                    LogicaLineaFactura logicaLineaFactura = new LogicaLineaFactura();
+                    foreach (var l in Lista)
+                    {
+                        l.IdFactura = idFactura;
+                        logicaLineaFactura.Agregar(l);
+                    }
+
+                    Session["ListaDeTabla"] = new List<LineaFactura>();
+                    Session["LMontoTotal"] = 0;
+                }
                 return View("Create");
             }
             else
