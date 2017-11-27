@@ -45,7 +45,7 @@
                 @Html.DisplayFor(modelItem => item.Cantidad)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => total)
+                $@Html.DisplayFor(modelItem => total)
             </td>
             <td>
                 @Html.ActionLink("Borrar", "BorrarDelCarrito", new { productoId = item.Producto.Id })

@@ -121,12 +121,11 @@ namespace Proyecto_Final___JaP.Controllers
                     if (productoId == l.Producto.Id)
                     {
                         Lista.Remove(l);
+                        Session["LMontoTotal"] = (Int32)Session["LMontoTotal"] - (l.Producto.PrecioPorUnidad * l.Cantidad);
                         break;
                     }
                 }
-
                 Session["ListaDeTabla"] = Lista;
-
                 return View("Create");
             }
             else
@@ -184,35 +183,47 @@ namespace Proyecto_Final___JaP.Controllers
         [HttpPost]
         public ActionResult Facturar(Factura factura)
         {
-            if (ValidarRol(Enumerados.Administrador) || ValidarRol(Enumerados.Empleado)) {
-                List<LineaFactura> Lista = (List<LineaFactura>)Session["ListaDeTabla"];
-                if (Lista.Count > 0)
-                {
-                    LogicaFactura logicaFactura = new LogicaFactura();
-                    Factura nuevaFactura = new Factura()
-                    {
-                        MontoTotal = (int)Session["LMontoTotal"],
-                        IdCliente = factura.IdCliente
-                    };
-
-                    int idFactura = logicaFactura.Agregar(nuevaFactura);
-                    nuevaFactura.Id = idFactura;
-
-                    LogicaLineaFactura logicaLineaFactura = new LogicaLineaFactura();
-                    foreach (var l in Lista)
-                    {
-                        l.IdFactura = idFactura;
-                        logicaLineaFactura.Agregar(l);
-                    }
-
-                    Session["ListaDeTabla"] = new List<LineaFactura>();
-                    Session["LMontoTotal"] = 0;
-                }
-                return View("Create");
-            }
-            else
+            try
             {
-                return RedirectToAction("Index", "Home");
+                if (ValidarRol(Enumerados.Administrador) || ValidarRol(Enumerados.Empleado))
+                {
+                    List<LineaFactura> Lista = (List<LineaFactura>)Session["ListaDeTabla"];
+                    if (Lista.Count > 0)
+                    {
+                        LogicaCliente logicaCliente = new LogicaCliente();
+                        if (logicaCliente.Buscar(factura.IdCliente) != null)
+                        {
+                            LogicaFactura logicaFactura = new LogicaFactura();
+                            Factura nuevaFactura = new Factura()
+                            {
+                                MontoTotal = (int)Session["LMontoTotal"],
+                                IdCliente = factura.IdCliente
+                            };
+
+                            int idFactura = logicaFactura.Agregar(nuevaFactura);
+                            nuevaFactura.Id = idFactura;
+
+                            LogicaLineaFactura logicaLineaFactura = new LogicaLineaFactura();
+                            foreach (var l in Lista)
+                            {
+                                l.IdFactura = idFactura;
+                                logicaLineaFactura.Agregar(l);
+                            }
+
+                            Session["ListaDeTabla"] = new List<LineaFactura>();
+                            Session["LMontoTotal"] = 0;
+                        }
+                    }
+                    return View("Create");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
 
         }

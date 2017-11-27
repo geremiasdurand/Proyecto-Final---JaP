@@ -60,26 +60,29 @@ namespace CapaDatos
 
             using (ConexionDB bd = new ConexionDB())
             {
-                var entidadABuscar = bd.Facturas.Find(lineafactura.IdLineaFactura);
+                var entidadABuscar = bd.LineaFacturas.Find(lineafactura.IdLineaFactura);
 
                 if (entidadABuscar != null)
                 {
                     resultado = new Entidades.LineaFactura
                     {
-                        IdLineaFactura = lineafactura.IdLineaFactura,
-                        IdFactura = lineafactura.IdFactura,
-                        Cantidad = lineafactura.Cantidad,
+                        IdLineaFactura = entidadABuscar.IdLineaFactura,
+                        IdFactura = entidadABuscar.IdFactura,
+                        Cantidad = entidadABuscar.Cantidad,
                     };
 
-                    var producto = bd.Productoes.Find(lineafactura.Producto.Id);
-
-                    resultado.Producto = new Entidades.Producto
+                    if (lineafactura.Producto != null)
                     {
-                        Id = producto.Id,
-                        Nombre = producto.Nombre,
-                        Marca = producto.Marca,
-                        PrecioPorUnidad = producto.PrecioPorUnidad,
-                    }; 
+                        var producto = bd.Productoes.Find(lineafactura.Producto.Id);
+
+                        resultado.Producto = new Entidades.Producto
+                        {
+                            Id = producto.Id,
+                            Nombre = producto.Nombre,
+                            Marca = producto.Marca,
+                            PrecioPorUnidad = producto.PrecioPorUnidad,
+                        };
+                    }
                 }
             }
 
@@ -90,27 +93,11 @@ namespace CapaDatos
         {
             using (ConexionDB bd = new ConexionDB())
             {
-                var buscarEntidad = bd.Facturas.Find(lineafactura.IdLineaFactura);
-
-                if (buscarEntidad != null)
-                {
-                    bd.Facturas.Remove(buscarEntidad);
-                    bd.SaveChanges();
-                }
-            }
-        }
-
-        public void Modificar(Entidades.LineaFactura lineafactura)
-        {
-            using (ConexionDB bd = new ConexionDB())
-            {
                 var buscarEntidad = bd.LineaFacturas.Find(lineafactura.IdLineaFactura);
 
                 if (buscarEntidad != null)
                 {
-                    buscarEntidad.IdProducto = lineafactura.Producto.Id;
-                    buscarEntidad.IdFactura = lineafactura.IdFactura;
-                    buscarEntidad.Cantidad = lineafactura.Cantidad;
+                    bd.LineaFacturas.Remove(buscarEntidad);
                     bd.SaveChanges();
                 }
             }

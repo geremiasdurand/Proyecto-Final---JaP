@@ -25,11 +25,6 @@ namespace CapaLogica
             repositorio.Eliminar(entidad);
         }
 
-        public void Modificar(Entidades.LineaFactura entidad)
-        {
-            repositorio.Modificar(entidad);
-        }
-
         public Entidades.LineaFactura Buscar(Entidades.LineaFactura entidad)
         {
             return repositorio.Buscar(entidad);

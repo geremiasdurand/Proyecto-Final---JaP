@@ -101,23 +101,21 @@ namespace CapaDatos
 
                 if (buscarEntidad != null)
                 {
-                    bd.Facturas.Remove(buscarEntidad);
-
-                    /*var resultado = from tabla in bd.LineaFacturas where tabla.IdLineaFactura == facturaId
+                    var resultado = from tabla in bd.LineaFacturas where tabla.IdFactura == facturaId
                                     select new Entidades.LineaFactura
                                     {
                                         IdLineaFactura = tabla.IdLineaFactura,
                                         IdFactura = tabla.IdFactura,
                                         Cantidad = tabla.Cantidad
                                     };
-                    var buscar = bd.LineaFacturas.Find(resultado);
-                    bd.LineaFacturas.Remove(buscar);
-                    */
 
-
-
-
-
+                    RepositorioLineaFactura repositorioLineaFactura = new RepositorioLineaFactura();
+                    foreach (var linea in resultado)
+                    {
+                        repositorioLineaFactura.Eliminar(linea);
+                    }
+                    
+                    bd.Facturas.Remove(buscarEntidad);
                     bd.SaveChanges();
                 }
             }

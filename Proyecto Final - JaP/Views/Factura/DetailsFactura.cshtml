@@ -10,30 +10,6 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.RequiresValidationContext)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RequiresValidationContext)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ErrorMessage)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ErrorMessage)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ErrorMessageResourceName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ErrorMessageResourceName)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.IdLineaFactura)
         </dt>
 
@@ -58,13 +34,17 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IdFactura)
+            @Html.DisplayName("Monto")
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IdFactura)
+            @Html.DisplayFor(model => model.Cantidad * model.Producto.PrecioPorUnidad)
         </dd>
 
     </dl>
+</div>
+
+<div>
+    @Html.ActionLink("Volver al inicio", "Index")
 </div>
 
