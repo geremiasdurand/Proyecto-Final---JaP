@@ -17,10 +17,22 @@ namespace CapaDatos
                             select new Entidades.LineaFactura()
                             {
                                 IdLineaFactura = tabla.IdLineaFactura,
-                                IdProducto = tabla.IdProducto,
                                 IdFactura = tabla.IdFactura,
                                 Cantidad = tabla.Cantidad,
                             };
+
+                foreach (var l in lista)
+                {
+                    var producto = bd.Productoes.Find(l.Producto.Id);
+
+                    l.Producto = new Entidades.Producto()
+                    {
+                        Id = producto.Id,
+                        Nombre = producto.Nombre,
+                        Marca = producto.Marca,
+                        PrecioPorUnidad = producto.PrecioPorUnidad,
+                    }; 
+                }
 
                 return lista.ToList();
             }
@@ -33,7 +45,7 @@ namespace CapaDatos
                 var nuevaEntidad = new LineaFactura
                 {
                     IdFactura = lineafactura.IdFactura,
-                    IdProducto = lineafactura.IdProducto,
+                    IdProducto = lineafactura.Producto.Id,
                     Cantidad = lineafactura.Cantidad,
 
                 };
@@ -56,9 +68,19 @@ namespace CapaDatos
                     {
                         IdLineaFactura = lineafactura.IdLineaFactura,
                         IdFactura = lineafactura.IdFactura,
-                        IdProducto = lineafactura.IdProducto,
                         Cantidad = lineafactura.Cantidad,
                     };
+
+                    var producto = bd.Productoes.Find(lineafactura.Producto.Id);
+
+                    resultado.Producto = new Entidades.Producto
+                    {
+                        Id = producto.Id,
+                        Nombre = producto.Nombre,
+                        Marca = producto.Marca,
+                        PrecioPorUnidad = producto.PrecioPorUnidad,
+                    };
+
                 }
             }
 
@@ -87,7 +109,7 @@ namespace CapaDatos
 
                 if (buscarEntidad != null)
                 {
-                    buscarEntidad.IdProducto = lineafactura.IdProducto;
+                    buscarEntidad.IdProducto = lineafactura.Producto.Id;
                     buscarEntidad.IdFactura = lineafactura.IdFactura;
                     buscarEntidad.Cantidad = lineafactura.Cantidad;
                     bd.SaveChanges();

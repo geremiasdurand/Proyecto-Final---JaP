@@ -15,9 +15,9 @@ namespace CapaLogica
             repositorio = new CapaDatos.RepositorioFactura();
         }
 
-        public void Agregar(Entidades.Factura entidad)
+        public int Agregar(Entidades.Factura entidad)
         {
-            repositorio.Agregar(entidad);
+            return repositorio.Agregar(entidad);
         }
 
         public void Eliminar(int facturaId)

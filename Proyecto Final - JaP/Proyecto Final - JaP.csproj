@@ -306,6 +306,9 @@
     <Content Include="Views\Producto\Create.cshtml" />
     <Content Include="Views\Factura\Index.cshtml" />
     <Content Include="Views\Factura\Create.cshtml" />
+    <Content Include="Views\Factura\CreateFactura.cshtml" />
+    <Content Include="Views\Factura\FacturarFactura.cshtml" />
+    <Content Include="Views\Factura\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

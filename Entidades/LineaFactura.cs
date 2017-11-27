@@ -12,7 +12,7 @@ namespace Entidades
     {
         public int IdLineaFactura { get; set; }
 
-        public int IdProducto { get; set; }
+        public Producto Producto{ get; set; }
 
         [Required]
         [Range(0, int.MaxValue, ErrorMessage = "Debe ser un numero mayor a 0")]

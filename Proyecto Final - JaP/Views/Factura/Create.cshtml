@@ -1,57 +1,81 @@
-﻿@model Entidades.LineaFactura
-
+﻿@model IEnumerable<Entidades.LineaFactura>
 @{
     ViewBag.Title = "Create";
 }
 
 <h2>Create</h2>
-
-
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>LineaFactura</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" } )
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IdProducto, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IdProducto, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IdProducto, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Cantidad, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Cantidad, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Cantidad, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IdFactura, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IdFactura, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IdFactura, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
-
 <div>
-    @Html.ActionLink("Back to List", "Index")
+@Html.Action("CreateGet", "Factura")
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Producto.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Producto.Marca)
+        </th>
+        <th>
+            @Html.DisplayName("Precio por unidad")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </th>
+        <th>
+            @Html.DisplayName("Precio Total")
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in (List<Entidades.LineaFactura>)Session["ListaDeTabla"])
+    {
+        var total = item.Cantidad * item.Producto.PrecioPorUnidad;
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Producto.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Producto.Marca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Producto.PrecioPorUnidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cantidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => total)
+            </td>
+            <td>
+                @Html.ActionLink("Borrar", "BorrarDelCarrito", new { productoId = item.Producto.Id })
+            </td>
+        </tr>
+    }
+
+    
+</table>
+
+
+    @using (Html.BeginForm("BorrarDelCarrito", "Factura"))
+    {
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10" style="text-align:right">
+                <input type="submit" value="Borrar Lista" class="btn btn-default" />
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.Action("FacturarFactura", "Factura")
+    </div>
+
+    <div>
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+
+
+

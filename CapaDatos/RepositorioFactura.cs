@@ -25,7 +25,8 @@ namespace CapaDatos
             }
         }
 
-        public void Agregar(Entidades.Factura factura)
+        //Devuelve el id de la factura ingresada
+        public int Agregar(Entidades.Factura factura)
         {
             using (ConexionDB bd = new ConexionDB())
             {
@@ -36,6 +37,10 @@ namespace CapaDatos
                 };
                 bd.Facturas.Add(nuevaEntidad);
                 bd.SaveChanges();
+
+                var idFactura = (from tabla in bd.Facturas
+                                select tabla.Id).Max();
+                return idFactura;
             }
         }
 
@@ -57,7 +62,6 @@ namespace CapaDatos
                     };
                 }
             }
-
             return resultado;
         }
 
