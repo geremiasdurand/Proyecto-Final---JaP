@@ -309,6 +309,7 @@
     <Content Include="Views\Factura\CreateFactura.cshtml" />
     <Content Include="Views\Factura\FacturarFactura.cshtml" />
     <Content Include="Views\Factura\Delete.cshtml" />
+    <Content Include="Views\Factura\DetailsFactura.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

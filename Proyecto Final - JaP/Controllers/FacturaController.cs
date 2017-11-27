@@ -96,6 +96,7 @@ namespace Proyecto_Final___JaP.Controllers
             }            
         }
 
+        [HttpPost]
         public ActionResult BorrarDelCarrito(int idProducto)
         {
             if (ValidarRol(Enumerados.Administrador) || ValidarRol(Enumerados.Empleado))
@@ -109,6 +110,7 @@ namespace Proyecto_Final___JaP.Controllers
                         break;
                     }
                 }
+
                 Session["ListaDeTabla"] = Lista;
                 return View("Create");
             }
@@ -126,7 +128,7 @@ namespace Proyecto_Final___JaP.Controllers
                 List<LineaFactura> Lista = (List<LineaFactura>)Session["ListaDeTabla"];
                 lineaFactura.Producto = TraerProducto(lineaFactura.Producto.Id);
 
-                var yaExiste = Lista.FirstOrDefault(m => m.Producto == lineaFactura.Producto);
+                var yaExiste = Lista.FirstOrDefault(m => m.Producto.Id == lineaFactura.Producto.Id);
                 if(yaExiste != null)
                 {
                     Lista.Remove(yaExiste);
@@ -293,6 +295,13 @@ namespace Proyecto_Final___JaP.Controllers
             LogicaProducto logicaProduto = new LogicaProducto();
 
             return logicaProduto.Buscar(idProducto);
+        }
+
+        [HttpGet]
+        public ActionResult Details (int idFactura)
+        {
+
+            return View();
         }
     }
 }

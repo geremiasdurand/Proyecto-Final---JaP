@@ -60,6 +60,8 @@ namespace CapaDatos
                         IdCliente = entidadABuscar.IdCliente,
                         MontoTotal = entidadABuscar.MontoTotal,
                     };
+
+                    var lineasFactura = bd.LineaFacturas.Find(facturaId);
                 }
             }
             return resultado;
