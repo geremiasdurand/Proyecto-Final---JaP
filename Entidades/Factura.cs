@@ -17,5 +17,12 @@ namespace Entidades
         [Required]
         [DataType(DataType.Currency)]
         public int MontoTotal { get; set; }
+
+        public List<LineaFactura> ListaDeLineasFactura { get; set; }
+
+        public Factura()
+        {
+            ListaDeLineasFactura = new List<LineaFactura>();
+        }
     }
 }

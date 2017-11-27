@@ -71,6 +71,7 @@ namespace Proyecto_Final___JaP.Controllers
             }
         }
 
+        #region Inicializacion de Views
         public ActionResult CreateGet()
         {
             if (ValidarRol(Enumerados.Administrador) || ValidarRol(Enumerados.Empleado))
@@ -82,6 +83,19 @@ namespace Proyecto_Final___JaP.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+
+        public ActionResult FacturarFactura()
+        {
+            if (ValidarRol(Enumerados.Administrador) || ValidarRol(Enumerados.Empleado))
+            {
+                return View("FacturarFactura");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+        #endregion
 
         public ActionResult BorrarDelCarritoTodo()
         {
@@ -96,8 +110,34 @@ namespace Proyecto_Final___JaP.Controllers
             }            
         }
 
-        [HttpPost]
-        public ActionResult BorrarDelCarrito(int idProducto)
+        [HttpGet]
+        public ActionResult BorrarDelCarrito(int productoId)
+        {
+            if (ValidarRol(Enumerados.Administrador) || ValidarRol(Enumerados.Empleado))
+            {
+                List<LineaFactura> Lista = (List<LineaFactura>)Session["ListaDeTabla"];
+                foreach (var l in Lista)
+                {
+                    if (productoId == l.Producto.Id)
+                    {
+                        Lista.Remove(l);
+                        break;
+                    }
+                }
+
+                Session["ListaDeTabla"] = Lista;
+
+                return View("Create");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        /*[HttpPost]
+        [ActionName("BorrarDelCarrito")]
+        public ActionResult BorrarDelCarritoConfirm(int idProducto)
         {
             if (ValidarRol(Enumerados.Administrador) || ValidarRol(Enumerados.Empleado))
             {
@@ -118,7 +158,7 @@ namespace Proyecto_Final___JaP.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-        }
+        }*/
 
         [HttpPost]
         public ActionResult AgregarAlCarrito(LineaFactura lineaFactura)
@@ -164,19 +204,7 @@ namespace Proyecto_Final___JaP.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-        }
-
-        public ActionResult FacturarFactura()
-        {
-            if (ValidarRol(Enumerados.Administrador) || ValidarRol(Enumerados.Empleado))
-            {
-                return View("FacturarFactura");
-            }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
-        }
+        }        
 
         [HttpPost]
         public ActionResult Facturar(Factura factura)

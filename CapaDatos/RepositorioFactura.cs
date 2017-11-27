@@ -61,7 +61,19 @@ namespace CapaDatos
                         MontoTotal = entidadABuscar.MontoTotal,
                     };
 
-                    var lineasFactura = bd.LineaFacturas.Find(facturaId);
+                    #region Se cargan las lineas de la factura
+                    var lineasFactura = from tabla in bd.LineaFacturas
+                                        where tabla.IdFactura == facturaId
+                                        select new Entidades.LineaFactura()
+                                        {
+                                            IdLineaFactura = tabla.IdLineaFactura
+                                        };
+                    RepositorioLineaFactura repositorioLineaFactura = new RepositorioLineaFactura();
+                    foreach(var l in lineasFactura)
+                    {
+                        resultado.ListaDeLineasFactura.Add(repositorioLineaFactura.Buscar(l));
+                    }
+                    #endregion
                 }
             }
             return resultado;
