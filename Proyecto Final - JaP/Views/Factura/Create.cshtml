@@ -8,6 +8,7 @@
 @Html.Action("CreateGet", "Factura")
 </div>
 
+<div class="text-center"><h3><b>CARRITO</b></h3></div>
 <table class="table">
     <tr>
         <th>
@@ -23,7 +24,7 @@
             @Html.DisplayNameFor(model => model.Cantidad)
         </th>
         <th>
-            @Html.DisplayName("Precio Total")
+            @Html.DisplayName("Monto")
         </th>
         <th></th>
     </tr>
@@ -54,16 +55,6 @@
 
     
 </table>
-
-
-    @using (Html.BeginForm("BorrarDelCarritoTodo", "Factura"))
-    {
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10" style="text-align:right">
-                <input type="submit" value="Borrar Lista" class="btn btn-default" />
-            </div>
-        </div>
-    }
 
     <div>
         @Html.Action("FacturarFactura", "Factura")

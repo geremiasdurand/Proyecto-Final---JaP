@@ -20,7 +20,6 @@ namespace CapaDatos
                                 IdCliente = tabla.IdCliente,
                                 MontoTotal = tabla.MontoTotal,
                             };
-
                 return lista.ToList();
             }
         }
@@ -103,6 +102,22 @@ namespace CapaDatos
                 if (buscarEntidad != null)
                 {
                     bd.Facturas.Remove(buscarEntidad);
+
+                    /*var resultado = from tabla in bd.LineaFacturas where tabla.IdLineaFactura == facturaId
+                                    select new Entidades.LineaFactura
+                                    {
+                                        IdLineaFactura = tabla.IdLineaFactura,
+                                        IdFactura = tabla.IdFactura,
+                                        Cantidad = tabla.Cantidad
+                                    };
+                    var buscar = bd.LineaFacturas.Find(resultado);
+                    bd.LineaFacturas.Remove(buscar);
+                    */
+
+
+
+
+
                     bd.SaveChanges();
                 }
             }

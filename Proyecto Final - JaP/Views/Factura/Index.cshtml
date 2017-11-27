@@ -1,21 +1,21 @@
 ﻿@model IEnumerable<Entidades.Factura>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Listado";
 }
 
-<h2>Lista de factura</h2>
+<h2>Listado de facturas</h2>
 
 <p>
-    @Html.ActionLink("Crear nueva Factura", "Create")
+    @Html.ActionLink("Crear nueva", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.IdCliente)
+            @Html.DisplayName("Id del Cliente")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MontoTotal)
+            @Html.DisplayName("Monto Total")
         </th>
         <th></th>
     </tr>
@@ -29,8 +29,8 @@
             @Html.DisplayFor(modelItem => item.MontoTotal)
         </td>
         <td>
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Detalles", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Borrar", "Delete", new { id=item.Id })
         </td>
     </tr>
 }

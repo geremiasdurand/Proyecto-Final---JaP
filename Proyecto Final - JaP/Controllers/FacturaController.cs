@@ -135,31 +135,6 @@ namespace Proyecto_Final___JaP.Controllers
             }
         }
 
-        /*[HttpPost]
-        [ActionName("BorrarDelCarrito")]
-        public ActionResult BorrarDelCarritoConfirm(int idProducto)
-        {
-            if (ValidarRol(Enumerados.Administrador) || ValidarRol(Enumerados.Empleado))
-            {
-                List<LineaFactura> Lista = (List<LineaFactura>)Session["ListaDeTabla"];
-                foreach(var l in Lista)
-                {
-                    if(idProducto == l.Producto.Id)
-                    {
-                        Lista.Remove(l);
-                        break;
-                    }
-                }
-
-                Session["ListaDeTabla"] = Lista;
-                return View("Create");
-            }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
-        }*/
-
         [HttpPost]
         public ActionResult AgregarAlCarrito(LineaFactura lineaFactura)
         {
@@ -274,12 +249,13 @@ namespace Proyecto_Final___JaP.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete(int facturaId)
+        public ActionResult Delete(int id)
         {
             if (ValidarRol(Enumerados.Administrador) || ValidarRol(Enumerados.Empleado))
             {
                 LogicaFactura logicaFactura = new LogicaFactura();
-                Factura resultado = logicaFactura.Buscar(facturaId);
+                Factura resultado = logicaFactura.Buscar(id);
+                
                 return View(resultado);
             }
             else
@@ -290,12 +266,12 @@ namespace Proyecto_Final___JaP.Controllers
 
         [HttpPost]
         [ActionName("Delete")]
-        public ActionResult DeleteConfirm(int facturaId)
+        public ActionResult DeleteConfirm(int id)
         {
             if (ValidarRol(Enumerados.Administrador) || ValidarRol(Enumerados.Empleado))
             {
                 LogicaFactura logicaFactura = new LogicaFactura();
-                logicaFactura.Eliminar(facturaId);
+                logicaFactura.Eliminar(id);
 
                 return RedirectToAction("Index", "Factura");
             }

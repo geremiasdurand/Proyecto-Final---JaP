@@ -79,8 +79,7 @@ namespace CapaDatos
                         Nombre = producto.Nombre,
                         Marca = producto.Marca,
                         PrecioPorUnidad = producto.PrecioPorUnidad,
-                    };
-
+                    }; 
                 }
             }
 
