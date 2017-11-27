@@ -83,11 +83,39 @@ namespace Proyecto_Final___JaP.Controllers
             }
         }
 
-        public ActionResult BorrarDelCarrito()
+        public ActionResult BorrarDelCarritoTodo()
         {
-            Session["ListaDeTabla"] = new List<LineaFactura>();
+            if (ValidarRol(Enumerados.Administrador) || ValidarRol(Enumerados.Empleado))
+            {
+                Session["ListaDeTabla"] = new List<LineaFactura>();
+                return View("Create");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }            
+        }
 
-            return View("Create");
+        public ActionResult BorrarDelCarrito(int idProducto)
+        {
+            if (ValidarRol(Enumerados.Administrador) || ValidarRol(Enumerados.Empleado))
+            {
+                List<LineaFactura> Lista = (List<LineaFactura>)Session["ListaDeTabla"];
+                foreach(var l in Lista)
+                {
+                    if(idProducto == l.Producto.Id)
+                    {
+                        Lista.Remove(l);
+                        break;
+                    }
+                }
+                Session["ListaDeTabla"] = Lista;
+                return View("Create");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
@@ -95,10 +123,20 @@ namespace Proyecto_Final___JaP.Controllers
         {
             if (ValidarRol(Enumerados.Administrador) || ValidarRol(Enumerados.Empleado))
             {
-                
                 List<LineaFactura> Lista = (List<LineaFactura>)Session["ListaDeTabla"];
                 lineaFactura.Producto = TraerProducto(lineaFactura.Producto.Id);
-                Lista.Add(lineaFactura);
+
+                var yaExiste = Lista.FirstOrDefault(m => m.Producto == lineaFactura.Producto);
+                if(yaExiste != null)
+                {
+                    Lista.Remove(yaExiste);
+                    yaExiste.Cantidad += lineaFactura.Cantidad;
+                    Lista.Add(yaExiste);
+                }
+                else
+                {
+                    Lista.Add(lineaFactura);
+                }
                 Session["ListaDeTabla"] = Lista;
                 var sesion = (Int32)Session["LMontoTotal"];
                 Session["LMontoTotal"] = sesion + lineaFactura.Producto.PrecioPorUnidad * lineaFactura.Cantidad;
