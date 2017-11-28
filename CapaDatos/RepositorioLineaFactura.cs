@@ -71,18 +71,24 @@ namespace CapaDatos
                         Cantidad = entidadABuscar.Cantidad,
                     };
 
-                    if (lineafactura.Producto != null)
-                    {
-                        var producto = bd.Productoes.Find(lineafactura.Producto.Id);
+                    var producto = from tablaLineaFactura in bd.LineaFacturas join tablaProducto in bd.Productoes on
+                                        tablaLineaFactura.IdProducto equals tablaProducto.Id
+                                        select new Entidades.Producto()
+                                        {
+                                            Id = tablaProducto.Id,
+                                            Nombre = tablaProducto.Nombre,
+                                            Marca = tablaProducto.Marca,
+                                            PrecioPorUnidad = tablaProducto.PrecioPorUnidad,
+                                        };
+                    var elProducto = producto.First();
 
-                        resultado.Producto = new Entidades.Producto
-                        {
-                            Id = producto.Id,
-                            Nombre = producto.Nombre,
-                            Marca = producto.Marca,
-                            PrecioPorUnidad = producto.PrecioPorUnidad,
-                        };
-                    }
+                    resultado.Producto = new Entidades.Producto
+                    {
+                        Id = elProducto.Id,
+                        Nombre = elProducto.Nombre,
+                        Marca = elProducto.Marca,
+                        PrecioPorUnidad = elProducto.PrecioPorUnidad,
+                    };
                 }
             }
 

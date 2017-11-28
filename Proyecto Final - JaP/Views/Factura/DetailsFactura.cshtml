@@ -1,4 +1,4 @@
-﻿@model Entidades.LineaFactura
+﻿@model IEnumerable<Entidades.LineaFactura>
 
 @{
     ViewBag.Title = "DetailsFactura";
@@ -6,43 +6,43 @@
 
 <h2>Detalle De Factura</h2>
 
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.IdLineaFactura)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IdLineaFactura)
-        </dd>
-
-        <dt>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdLineaFactura)        
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Producto.Nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Producto.Nombre)
-        </dd>
-
-        <dt>
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Cantidad)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Cantidad)
-        </dd>
-
-        <dt>
+        </th>
+        <th>
             @Html.DisplayName("Monto")
-        </dt>
+        </th>
+        <th></th>
+    </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.Cantidad * model.Producto.PrecioPorUnidad)
-        </dd>
+    @foreach (var item in Model)
+    {
+        var total = item.Cantidad * item.Producto.PrecioPorUnidad;
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdLineaFactura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Producto.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cantidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => total)
+            </td>
+        </tr>
+    }
 
-    </dl>
-</div>
+</table>
 
 <div>
     @Html.ActionLink("Volver al inicio", "Index")

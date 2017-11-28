@@ -29,7 +29,7 @@
             @Html.DisplayFor(modelItem => item.MontoTotal)
         </td>
         <td>
-            @Html.ActionLink("Detalles", "Details", new { idFactura = item.Id }) |
+            @Html.ActionLink("Detalles", "DetailsFactura", new { idFactura = item.Id }) |
             @Html.ActionLink("Borrar", "Delete", new { id = item.Id })
         </td>
     </tr>

@@ -313,10 +313,27 @@ namespace Proyecto_Final___JaP.Controllers
         }
 
         [HttpGet]
-        public ActionResult Details (int idFactura)
+        public ActionResult DetailsFactura (int idFactura)
         {
+            if (ValidarRol(Enumerados.Administrador) || ValidarRol(Enumerados.Empleado))
+            {
+                LogicaFactura logicaFactura = new LogicaFactura();
+                Factura resultado = logicaFactura.Buscar(idFactura);
 
-            return View();
+                //Cargamos las lineas de la Factura
+                LogicaLineaFactura logicaLineaFactura = new LogicaLineaFactura();
+                var retorno = new List<LineaFactura>();
+                foreach (var linea in resultado.ListaDeLineasFactura)
+                {
+                    retorno.Add(logicaLineaFactura.Buscar(linea));
+                }
+
+                return View(retorno);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }            
         }
     }
 }
