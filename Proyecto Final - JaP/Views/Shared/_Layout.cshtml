@@ -18,14 +18,17 @@
                 </button>
                 @Html.ActionLink("INICIO", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Administradores", "Index", "Administrador")</li>
-                    <li>@Html.ActionLink("Clientes", "Index", "Cliente")</li>
-                    <li>@Html.ActionLink("Productos", "Index", "Producto")</li>
-                    <li>@Html.ActionLink("Facturas", "Index", "Factura")</li>
-                </ul>
-            </div>
+            @if ((Entidades.Administradores)Session["Administrador"]!=null && ((Entidades.Administradores)Session["Administrador"]).Rol != Entidades.Enumerados.Indefinido)
+            {
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Administradores", "Index", "Administrador")</li>
+                        <li>@Html.ActionLink("Clientes", "Index", "Cliente")</li>
+                        <li>@Html.ActionLink("Productos", "Index", "Producto")</li>
+                        <li>@Html.ActionLink("Facturas", "Index", "Factura")</li>
+                    </ul>
+                </div>
+            }
         </div>
     </div>
     <div class="container body-content">
